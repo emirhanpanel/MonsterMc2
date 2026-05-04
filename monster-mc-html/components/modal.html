@@ -1,0 +1,35 @@
+<div id="modal" class="modal">
+
+<div class="modal-content">
+
+<span class="close" onclick="closeModal()">&times;</span>
+
+<h2 id="modalTitle">Başlık</h2>
+<p id="modalText">İçerik</p>
+
+<div class="modal-actions">
+<button class="btn play" onclick="confirmModal()">Onayla</button>
+<button class="btn register" onclick="closeModal()">İptal</button>
+
+<script>
+loadComponent("modalContainer","modal.html");
+loadComponent("notificationContainer","notification.html");
+</script>
+
+
+<div id="modalContainer"></div>
+<div id="notificationContainer"></div>
+
+
+<!-- LOADER COMPONENT -->
+<div id="loaderContainer"></div>
+
+<script>
+loadComponent("loaderContainer","loader.html");
+</script>
+
+</div>
+
+</div>
+
+</div>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kayıt Ol - MonsterMC</title>
+
+<link rel="stylesheet" href="assets/css/auth.css">
+
+<style>
+/* EKSTRA REGISTER STYLE */
+.login-box h2{
+font-size:22px;
+}
+
+.login-box input{
+margin:8px 0;
+}
+
+.success{
+color:#4dff88;
+font-size:13px;
+display:none;
+margin-top:10px;
+}
+</style>
+
+</head>
+<body>
+
+<!-- BLUR BACKGROUND -->
+<div class="bg-blur"></div>
+<div class="bg-overlay"></div>
+
+<div class="login-box">
+
+<h2>MonsterMC Kayıt Ol</h2>
+
+<input id="username" type="text" placeholder="Kullanıcı Adı">
+<input id="email" type="email" placeholder="Email">
+<input id="pass" type="password" placeholder="Şifre">
+<input id="pass2" type="password" placeholder="Şifre Tekrar">
+
+<p id="error" class="error"></p>
+<p id="success" class="success"></p>
+
+<button onclick="registerUser()">Kayıt Ol</button>
+
+<a href="login.html" class="link">Zaten hesabın var mı? Giriş yap</a>
+
+</div>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+<script src="config/firebase.js"></script>
+
+<script>
+
+function registerUser(){
+
+let username = document.getElementById("username").value;
+let email = document.getElementById("email").value;
+let pass = document.getElementById("pass").value;
+let pass2 = document.getElementById("pass2").value;
+
+let errorBox = document.getElementById("error");
+let successBox = document.getElementById("success");
+
+errorBox.style.display="none";
+successBox.style.display="none";
+
+// VALIDATION
+if(!username || !email || !pass || !pass2){
+errorBox.innerText="Tüm alanları doldur!";
+errorBox.style.display="block";
+return;
+}
+
+if(pass !== pass2){
+errorBox.innerText="Şifreler uyuşmuyor!";
+errorBox.style.display="block";
+return;
+}
+
+if(pass.length < 6){
+errorBox.innerText="Şifre en az 6 karakter!";
+errorBox.style.display="block";
+return;
+}
+
+// FIREBASE REGISTER
+auth.createUserWithEmailAndPassword(email, pass)
+.then(userCredential => {
+
+let user = userCredential.user;
+
+// DATABASE KAYIT
+db.collection("users").doc(user.uid).set({
+username: username,
+email: email,
+coins: 100, // başlangıç coin
+createdAt: new Date()
+});
+
+// SUCCESS
+successBox.innerText="Kayıt başarılı! Girişe yönlendiriliyorsun...";
+successBox.style.display="block";
+
+
+// REDIRECT
+setTimeout(()=>{
+location.href="login.html";
+},2000);
+
+})
+.catch(e=>{
+errorBox.innerText = e.message;
+errorBox.style.display="block";
+});
+
+}
+
+function registerUser(){
+
+let email = document.getElementById("email").value;
+let pass = document.getElementById("pass").value;
+
+auth.createUserWithEmailAndPassword(email, pass)
+.then(userCredential => {
+
+let user = userCredential.user;
+
+db.collection("users").doc(user.uid).set({
+    email: email,
+    username: email.split("@")[0],
+    coins: 0,
+    rank: "Oyuncu",
+    createdAt: new Date()
+});
+
+alert("Kayıt başarılı!");
+location.href = "panel.html";
+
+})
+.catch(e => alert(e.message));
+
+}
+ 
+</script>
+
+<script src="assets/js/ui.js"></script>
+<script>
+loadComponent("navbar","navbar.html");
+loadComponent("footer","footer.html");
+</script>
+
+
+
+<script>
+loadComponent("modalContainer","modal.html");
+loadComponent("notificationContainer","notification.html");
+</script>
+
+
+<div id="modalContainer"></div>
+<div id="notificationContainer"></div>
+
+<!-- LOADER COMPONENT -->
+<div id="loaderContainer"></div>
+
+<script>
+loadComponent("loaderContainer","loader.html");
+</script>
+
+</body>
+</html>

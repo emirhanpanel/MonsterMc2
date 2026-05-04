@@ -1,0 +1,30 @@
+<div class="sidebar">
+
+<h2>Panel</h2>
+
+<a href="panel.html">🏠 Dashboard</a>
+<a href="profile.html">👤 Profil</a>
+<a href="settings.html">⚙️ Ayarlar</a>
+<a href="market.html">💰 Market</a>
+
+<hr>
+
+<button onclick="logout()">🚪 Çıkış Yap</button>
+<div id="notification-container"></div>
+
+<script>
+loadComponent("modalContainer","modal.html");
+loadComponent("notificationContainer","notification.html");
+</script>
+
+
+<!-- LOADER COMPONENT -->
+<div id="loaderContainer"></div>
+
+<script>
+loadComponent("loaderContainer","loader.html");
+</script>
+
+<div id="modalContainer"></div>
+<div id="notificationContainer"></div>
+</div>

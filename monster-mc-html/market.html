@@ -1,0 +1,63 @@
+```html
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Market - MonsterMC</title>
+
+<link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+.market-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+padding:60px;
+}
+</style>
+
+</head>
+
+<body>
+
+<nav>
+<h2>MONSTER<span>MC</span></h2>
+<a href="panel.html">Panele Dön</a>
+
+</nav>
+
+<section class="market-grid" id="products"></section>
+
+<script type="module" src="assets/js/auth.js"></script>
+<script src="assets/js/market.js"></script>
+
+<button onclick="buyItem(50)">VIP SATIN AL (50 coin)</button>
+
+<script src="assets/js/ui.js"></script>
+<script>
+loadComponent("navbar","navbar.html");
+loadComponent("footer","footer.html");
+</script>
+
+
+
+<script>
+loadComponent("modalContainer","modal.html");
+loadComponent("notificationContainer","notification.html");
+</script>
+
+
+<div id="modalContainer"></div>
+<div id="notificationContainer"></div>
+
+<!-- LOADER COMPONENT -->
+<div id="loaderContainer"></div>
+
+<script>
+loadComponent("loaderContainer","loader.html");
+</script>
+
+</body>
+
+</html>
+

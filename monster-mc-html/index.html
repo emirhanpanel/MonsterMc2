@@ -1,0 +1,247 @@
+```html
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MonsterMC</title>
+
+<link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+<div class="loader-box">
+<h1>MONSTER<span>MC</span></h1>
+<div class="spinner"></div>
+</div>
+</div>
+
+<!-- NAVBAR -->
+<nav>
+<h2>MONSTER<span>MC</span></h2>
+
+<div>
+<a href="index.html">Ana Sayfa</a>
+<a href="market.html">Market</a>
+<a href="leaderboard.html">Sıralama</a>
+<a href="help.html">Yardım</a>
+<a href="login.html" class="login-btn">Giriş Yap</a>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+
+<div class="hero-left">
+<h1>Türkiye'nin En Güçlü Minecraft Sunucusu</h1>
+<p>MonsterMC ile savaş, kazan ve zirveye çık</p>
+
+<button class="btn play" onclick="copyIP()">IP Kopyala</button>
+<button class="btn register" onclick="location.href='register.html'">Kayıt Ol</button>
+
+<div class="info-box">
+<div>
+<b>Sunucu Durumu</b>
+<p id="players">Yükleniyor...</p>
+</div>
+
+<div class="ip">play.monstermc.net</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- STATS -->
+<section class="stats">
+
+<div class="stat-box">
+<h2>1500+</h2>
+<p>Oyuncu</p>
+</div>
+
+<div class="stat-box">
+<h2 id="players2">...</h2>
+<p>Online</p>
+</div>
+
+<div class="stat-box">
+<h2>24/7</h2>
+<p>Aktif</p>
+</div>
+
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+
+<div class="feature-box">
+<h3>⚡ Ultra Performans</h3>
+<p>Gecikmesiz oyun deneyimi</p>
+</div>
+
+<div class="feature-box">
+<h3>💰 Market Sistemi</h3>
+<p>VIP ve coin sistemi</p>
+</div>
+
+<div class="feature-box">
+<h3>🛡️ Anti Cheat</h3>
+<p>Adil PvP sistemi</p>
+</div>
+
+<div class="feature-box">
+<h3>🎮 Oyun Modları</h3>
+<p>BoxPvP, SMP ve daha fazlası</p>
+</div>
+
+</section>
+
+<!-- HABERLER -->
+<section class="section">
+
+<h2>Haberler</h2>
+
+<div class="grid">
+
+<div class="news-card">
+<h3>Yeni Sezon</h3>
+<p>Sunucu sıfırlandı!</p>
+</div>
+
+<div class="news-card">
+<h3>%25 İndirim</h3>
+<p>Cuma gününe özel!</p>
+</div>
+
+<div class="news-card">
+<h3>Etkinlik</h3>
+<p>Büyük ödüller seni bekliyor</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- DISCORD -->
+<section class="discord">
+
+<h2>Discord'a Katıl</h2>
+
+<iframe src="https://discord.com/widget?id=123456789012345678&theme=dark"
+width="350" height="400" allowtransparency="true" frameborder="0">
+</iframe>
+
+</section>
+
+<!-- CTA -->
+<section class="cta">
+<h2>Hemen Katıl!</h2>
+<p>Arkadaşlarınla oyna ve eğlen</p>
+<button class="btn play" onclick="copyIP()">Katıl</button>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+
+<div class="footer-container">
+
+<div class="footer-box">
+<h3>Hakkımızda</h3>
+<p>Kaliteli yetkili ekibimiz ile en iyi deneyim</p>
+</div>
+
+<div class="footer-box">
+<h3>Hızlı Erişim</h3>
+<a href="index.html">Ana Sayfa</a>
+<a href="market.html">Mağaza</a>
+<a href="help.html">Yardım</a>
+</div>
+
+<div class="footer-box">
+<h3>Sosyal</h3>
+<a href="#">Discord</a>
+<a href="#">YouTube</a>
+<a href="#">TikTok</a>
+</div>
+
+<div class="footer-box">
+<h3>Bağlantılar</h3>
+<a href="#">Gizlilik</a>
+<a href="#">Koşullar</a>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© MonsterMC 2026
+</div>
+
+</footer>
+
+<!-- SCRIPTS -->
+<script src="assets/js/app.js"></script>
+<script src="assets/js/api.js"></script>
+
+<script>
+
+// LOADER KAPAT
+window.onload = () => {
+document.getElementById("loader").style.display = "none";
+};
+
+// IP KOPYALA
+function copyIP(){
+navigator.clipboard.writeText("play.monstermc.net");
+alert("IP Kopyalandı!");
+}
+
+// ONLINE SAYIYI ÇEK
+async function loadPlayers(){
+try{
+let res = await fetch("https://api.mcsrvstat.us/2/play.monstermc.net");
+let data = await res.json();
+
+let count = data.players ? data.players.online : "0";
+
+document.getElementById("players").innerText = count + " oyuncu aktif";
+document.getElementById("players2").innerText = count;
+
+}catch{
+document.getElementById("players").innerText = "Sunucu offline";
+}
+}
+
+setInterval(loadPlayers, 5000);
+loadPlayers();
+
+</script>
+
+<script src="assets/js/ui.js"></script>
+<script>
+loadComponent("navbar","navbar.html");
+loadComponent("footer","footer.html");
+</script>
+
+<script>
+loadComponent("modalContainer","modal.html");
+loadComponent("notificationContainer","notification.html");
+</script>
+
+
+<div id="modalContainer"></div>
+<div id="notificationContainer"></div>
+
+<!-- LOADER COMPONENT -->
+<div id="loaderContainer"></div>
+
+<script>
+loadComponent("loaderContainer","loader.html");
+</script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Profil</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+<section class="section">
+
+<h1>Profil</h1>
+
+<div class="card">
+<p>Kullanıcı: <span id="username"></span></p>
+<p>Coin: <span id="coins"></span></p>
+</div>
+
+</section>
+
+<script src="assets/js/panel.js"></script>
+
+<script src="assets/js/ui.js"></script>
+<script>
+loadComponent("navbar","navbar.html");
+loadComponent("footer","footer.html");
+</script>
+
+
+<script>
+loadComponent("modalContainer","modal.html");
+loadComponent("notificationContainer","notification.html");
+</script>
+
+
+<div id="modalContainer"></div>
+<div id="notificationContainer"></div>
+
+
+<!-- LOADER COMPONENT -->
+<div id="loaderContainer"></div>
+
+<script>
+loadComponent("loaderContainer","loader.html");
+</script>
+
+</body>
+</html>

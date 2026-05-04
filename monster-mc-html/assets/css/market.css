@@ -1,0 +1,33 @@
+.market{
+margin-top:100px;
+padding:40px;
+}
+
+.product-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.product{
+background:rgba(20,20,30,0.85);
+padding:20px;
+border-radius:15px;
+text-align:center;
+transition:0.3s;
+}
+
+.product:hover{
+transform:translateY(-10px);
+box-shadow:0 0 25px #8a2be2;
+}
+
+.product img{
+width:100%;
+border-radius:10px;
+margin-bottom:10px;
+}
+
+.product button{
+margin-top:10px;
+}

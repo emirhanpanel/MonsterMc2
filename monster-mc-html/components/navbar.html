@@ -1,0 +1,35 @@
+<nav>
+
+<h2>MONSTER<span>MC</span></h2>
+
+<div id="navLinks">
+<a href="index.html">Ana Sayfa</a>
+<a href="market.html">Market</a>
+<a href="leaderboard.html">Sıralama</a>
+<a href="help.html">Yardım</a>
+
+<!-- AUTH DURUMA GÖRE DEĞİŞİR -->
+<span id="authArea">
+<a href="login.html" class="login-btn">Giriş Yap</a>
+</span>
+
+<script>
+loadComponent("modalContainer","modal.html");
+loadComponent("notificationContainer","notification.html");
+</script>
+
+
+<div id="modalContainer"></div>
+<div id="notificationContainer"></div>
+
+
+<!-- LOADER COMPONENT -->
+<div id="loaderContainer"></div>
+
+<script>
+loadComponent("loaderContainer","loader.html");
+</script>
+
+</div>
+
+</nav>
